@@ -30,10 +30,32 @@ A modern, responsive Expense Tracker built with **React** and **Vite**, featurin
 
 ## Project Structure
 
-- `src/App.jsx`: Main application logic and UI components.
-- `src/App.css`: Application-specific styling.
-- `src/index.css`: Global styles, typography, and theme variables.
-- `src/supabaseClient.js`: Connection setup for Supabase.
+```
+Expense-Tracker/
+├── public/
+│   ├── favicon.svg
+│   └── icons.svg
+├── src/
+│   ├── assets/
+│   │   ├── hero.png
+│   │   ├── react.svg
+│   │   └── vite.svg
+│   ├── App.css            # Application-specific styling
+│   ├── App.jsx            # Main application logic and UI
+│   ├── index.css          # Global styles, typography, and theme variables
+│   ├── main.jsx           # React entry point
+│   └── supabaseClient.js  # Supabase connection setup
+├── .env                   # Environment variables (Supabase keys)
+├── .gitignore
+├── eslint.config.js
+├── index.html             # HTML entry point
+├── package.json
+├── vite.config.js
+├── LICENSE
+├── project_description.md # Project write-up and overview
+└── README.md
+```
+
 
 ## Getting Started
 
