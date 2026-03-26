@@ -59,7 +59,7 @@ function App() {
       return;
     }
     const nextExpense = {
-      desc: newDesc.trim(),
+      description: newDesc.trim(),
       amount: amt,
       category: newCat,
       date: newDate
@@ -86,7 +86,7 @@ function App() {
 
   const exportCSV = () => {
     if (!expenses.length) { alert('No expenses to export.'); return; }
-    const rows = [['Date','Description','Category','Amount'],...expenses.map(e=>[e.date,e.desc,e.category,e.amount.toFixed(2)])];
+    const rows = [['Date','Description','Category','Amount'],...expenses.map(e=>[e.date,e.description,e.category,e.amount.toFixed(2)])];
     const csv = rows.map(r=>r.join(',')).join('\n');
     const b = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
     const url = URL.createObjectURL(b);
@@ -198,7 +198,7 @@ function App() {
                   return (
                     <div className="expense-item" key={e.id}>
                       <span className="cat-badge" style={{ background: `${c}22`, color: c }}>{e.category}</span>
-                      <span className="expense-desc">{e.desc}</span>
+                      <span className="expense-desc">{e.description}</span>
                       <span className="expense-date">{e.date}</span>
                       <span className="expense-amount">{fmt(e.amount)}</span>
                       <button className="btn-del" onClick={() => deleteExpense(e.id)}>×</button>
