@@ -1,6 +1,9 @@
 # Expense Tracker
 
+🔗 **Live Demo**: [expense-tracker-beta-inky.vercel.app](https://expense-tracker-beta-inky.vercel.app/)
+
 A modern, responsive Expense Tracker built with **React** and **Vite**, featuring persistent storage via **Supabase**.
+
 
 ## Features
 
