@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { supabase } from './supabaseClient'
-import ExpensesTab from './components/ExpensesTab'
-import ChartsTab from './components/ChartsTab'
+import ExpensesTab from '../components/ExpensesTab.jsx'
+import ChartsTab from '../components/ChartsTab.jsx'
 
 import './App.css'
 
