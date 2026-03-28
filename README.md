@@ -2,90 +2,128 @@
 
 🔗 **Live Demo**: [expense-tracker-beta-inky.vercel.app](https://expense-tracker-beta-inky.vercel.app/)
 
-A modern, responsive Expense Tracker built with **React** and **Vite**, featuring persistent storage via **Supabase**.
+A modern, responsive Expense Tracker built with **React** and **Vite**, featuring persistent storage via **Supabase**.  
+This project was refactored for **cleaner structure**, **reusable components**, and **centralized category constants**.
 
+---
 
 ## Features
 
-- **Dashboard**: High-level metrics for Total spent, Current month, and Entry count.
-- **Add Expense**: Easily record new expenses with descriptions, amounts, categories, and dates.
-- **Categorization**: Auto-categorized expenses with color-coded badges (Food, Transport, Housing, etc.).
-- **Filtering**: Filter your transaction history by category or month.
-- **Data Visualization**:
-  - Bar charts for spending trends by category.
-  - Interactive Pie chart for category breakdown.
-- **Persistence**: Fully integrated with Supabase for real-time data storage.
-- **Export**: Export your expense history to a CSV file.
-- **Theming**: Modern Light and Dark mode support using CSS variables.
+- **Dashboard**
+  - Total spent
+  - Current month total
+  - Entry count
+- **Add Expense**
+  - Add description, amount, category, and date
+  - Instantly saved to Supabase
+- **Categorization**
+  - Category list with color-coded badges
+  - Centralized `CAT_COLORS` and `CATEGORIES`
+- **Filtering**
+  - Filter expenses by **category**
+  - Filter expenses by **month**
+- **Data Visualization**
+  - Bar chart for spending trends by category
+  - Interactive pie chart for category breakdown
+- **Persistence**
+  - Fully integrated with Supabase for real-time data
+  - Realtime refresh using Supabase subscriptions
+- **Export**
+  - Export expense history to CSV
+- **Theming**
+  - Modern Light and Dark mode support via CSS variables
+
+---
+
+## Refactor / Code Structure (New)
+
+To improve maintainability and scalability:
+
+- Category constants moved into dedicated module(s):
+  - `src/constants/categories.js`
+- UI is split into functional components:
+  - `src/components/PieChart.jsx`
+  - `src/components/CategoryBars.jsx`
+  - `src/components/ExpensesList.jsx`
+  - `src/components/AddExpenseForm.jsx`
+  - `src/components/ExpensesTab.jsx`
+  - `src/components/ChartsTab.jsx`
+
+---
 
 ## Usage
 
-1. **Dashboard Overview**: Upon launching the app, you'll see your total spending metrics at the top. These refresh automatically as you manage your expenses.
-2. **Adding an Expense**: Enter the description, amount ($), category, and date in the "Add expense" section and click **Add expense**. The record will be instantly saved to Supabase.
-3. **Viewing Historical Data**: Scroll down to the "All expenses" section to see a list of your transactions.
-4. **Filtering**: Use the category dropdown or the month selector to quickly find specific expenses.
-5. **Analytics**: Switch to the **Charts** tab to view your spending distribution across different categories through bar and pie charts.
-6. **Deleting**: Click the `×` button next to any expense item to remove it from the database.
-7. **Data Export**: Click the **Export CSV** button in the header to download a complete record of your expenses.
+1. Open the app → view dashboard metrics.
+2. Use **Add expense** to create a new expense. It will be saved to Supabase immediately.
+3. Scroll down to **All expenses** to view history.
+4. Use **filters** (category + month) to narrow results.
+5. Switch to **Charts** tab for visuals.
+6. Click `×` to delete an expense.
+7. Click **Export CSV** to download all recorded expenses.
+
+---
 
 ## Project Structure
 
-```
+```txt
 Expense-Tracker/
 ├── public/
 │   ├── favicon.svg
 │   └── icons.svg
 ├── src/
+│   ├── constants/
+│   │   └── categories.js
+│   ├── components/
+│   │   ├── PieChart.jsx
+│   │   ├── CategoryBars.jsx
+│   │   ├── ExpensesList.jsx
+│   │   ├── AddExpenseForm.jsx
+│   │   ├── ExpensesTab.jsx
+│   │   └── ChartsTab.jsx
 │   ├── assets/
-│   │   ├── hero.png
-│   │   ├── react.svg
-│   │   └── vite.svg
-│   ├── App.css            # Application-specific styling
-│   ├── App.jsx            # Main application logic and UI
-│   ├── index.css          # Global styles, typography, and theme variables
-│   ├── main.jsx           # React entry point
-│   └── supabaseClient.js  # Supabase connection setup
-├── .env                   # Environment variables (Supabase keys)
-├── .gitignore
-├── eslint.config.js
-├── index.html             # HTML entry point
+│   ├── App.css
+│   ├── App.jsx
+│   ├── index.css
+│   └── main.jsx
+│   └── supabaseClient.js
+├── .env
 ├── package.json
 ├── vite.config.js
-├── LICENSE
-├── project_description.md # Project write-up and overview
 └── README.md
-```
-
 
 ## Getting Started
+1) Install dependencies
+bash
+npm install
 
-1. **Clone the repository**
-2. **Install dependencies**:
+2) Configure Environment Variables
+Create a .env file in the project root:
 
-   ```bash
-   npm install
-   ```
+env
+VITE_SUPABASE_URL=your_supabase_url
+VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
 
-3. **Configure Environment Variables**:
-   Ensure you have a `.env` file in the root directory with the following keys:
+3) Run development server
+bash
+npm run dev
 
-   ```env
-   VITE_SUPABASE_URL=your_supabase_url
-   VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
-   ```
+4) Build for production
+bash
+npm run build
 
-4. **Run development server**:
+Migration Note
+Originally designed as a single-file HTML demo (expense_tracker_app.html).
+This version refactors it into a scalable React app with persistent data stored in Supabase.
 
-   ```bash
-   npm run dev
-   ```
+Supabase Setup (Required)
+Table: public.expenses
+This app expects an expenses table with:
 
-5. **Build for production**:
+id (primary key; identity)
+description (text)
+amount (numeric > 0)
+category (text)
+date (date)
+RLS (Row Level Security)
+The app uses the anon key, so ensure policies allow the intended operations for your deployment mode (dev vs production).
 
-   ```bash
-   npm run build
-   ```
-
-## Migration Note
-
-This project was originally designed as a single-file HTML demo (`expense_tracker_app.html`) and has been refactored into a scalable React application to support persistence and modern web best practices.
