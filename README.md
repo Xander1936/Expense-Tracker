@@ -1,6 +1,11 @@
 # Expense Tracker
 
-🔗 **Live Demo**: [expense-tracker-beta-inky.vercel.app](https://expense-tracker-beta-inky.vercel.app/)
+🔗 **GitHub Repo**: [https://github.com/Xander1936/Expense-Tracker]
+
+🔗 **Vercel Project**: [https://vercel.com/alexandre-massodas-projects/expense-tracker]
+   **Vercel Live Demo**: (https://expense-tracker-nu-murex.vercel.app/)
+
+Expense Tracker is a modern, responsive expense management web app built with React and Vite. It lets users add expenses (description, amount, category, date), view and filter their history, visualize spending with charts, and persist all data using Supabase for a smooth real-time experience.
 
 A modern, responsive Expense Tracker built with **React** and **Vite**, featuring persistent storage via **Supabase**.  
 This project was refactored for **cleaner structure**, **reusable components**, and **centralized category constants**.
